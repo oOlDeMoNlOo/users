@@ -3,7 +3,9 @@ import {CommonModule} from '@angular/common';
 import {UsersComponent} from './users/users.component';
 import {RoutingUsersModule} from './routing-users.module';
 import {
-    MatButtonModule, MatCardModule, MatFormFieldModule, MatIconModule, MatInputModule, MatSortModule,
+    MatButtonModule, MatCardModule, MatDatepickerModule, MatFormFieldModule, MatIconModule, MatInputModule,
+    MatNativeDateModule, MatRadioModule,
+    MatSortModule,
     MatTooltipModule
 } from '@angular/material';
 import {MatTableModule} from '@angular/material/table';
@@ -11,6 +13,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {TableComponent} from './table/table.component';
 import {AddUserComponent} from './add-user/add-user.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import {FullInfoComponent} from './full-info/full-info.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
     imports: [
@@ -25,9 +29,13 @@ import {ReactiveFormsModule} from '@angular/forms';
         MatPaginatorModule,
         MatFormFieldModule,
         MatInputModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatRadioModule,
+        HttpClientModule
     ],
-    declarations: [UsersComponent, TableComponent, AddUserComponent]
+    declarations: [UsersComponent, TableComponent, AddUserComponent, FullInfoComponent]
 })
 export class UsersModule {
 }

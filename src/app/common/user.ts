@@ -5,4 +5,6 @@ export interface User {
     surname: string;
     patronymic: string;
     group: string;
+    birthday: Date;
+    sex: boolean;
 }

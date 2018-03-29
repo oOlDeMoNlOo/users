@@ -1,11 +1,48 @@
 <mat-card class="container">
-  <form class="row" [formGroup]="form">
-    <div class="col">
-      <mat-form-field>
-        <input matInput id="login" placeholder="Логин" formControlName="login">
-      </mat-form-field>
+    <mat-card-title>Регистрация нового пользователя</mat-card-title>
+    <form class="row" [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="col">
+            <mat-form-field class="w-100">
+                <input matInput id="login" placeholder="Логин" formControlName="login">
+            </mat-form-field>
+            <mat-form-field class="w-100">
+                <input matInput id="password" placeholder="Пароль" formControlName="password" [type]="hide ? 'password' : 'text'">
+                <mat-icon class="hide_icon" matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+            </mat-form-field>
+            <mat-form-field class="w-100">
+                <input matInput id="group" placeholder="Группа привилегий" formControlName="group">
+            </mat-form-field>
+            <mat-form-field class="w-100">
+                <input matInput [matDatepicker]="picker" placeholder="Дата рождения">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+        </div>
+        <div class="col">
+            <mat-form-field class="w-100">
+                <input matInput id="name" placeholder="Имя" formControlName="name">
+            </mat-form-field>
+            <mat-form-field class="w-100">
+                <input matInput id="surname" placeholder="Фамилия" formControlName="surname">
+            </mat-form-field>
+            <mat-form-field class="w-100">
+                <input matInput id="patronymic" placeholder="Отчество" formControlName="patronymic">
+            </mat-form-field>
+            <div class="sex">
+                <label for="sex">Пол: </label>
+                <mat-radio-group formControlName="sex" id="sex">
+                    <mat-radio-button [value]="'male'" color="primary">
+                        Мужской
+                    </mat-radio-button>
+                    <mat-radio-button [value]="'female'">
+                        Женский
+                    </mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </div>
+        <div class="col-12 d-flex flex-row justify-content-end">
+            <button mat-raised-button color="primary" type="submit" >Зарегистрировать</button>
+        </div>
+    </form>
 
-    </div>
-    <div class="col"></div>
-  </form>
 </mat-card>

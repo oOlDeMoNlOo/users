@@ -9,26 +9,13 @@ import {UsersService} from '../users.service';
 })
 export class UsersComponent implements OnInit {
 
-    users: any;
 
     constructor(public service: UsersService) {
     }
 
 
     ngOnInit() {
-        this.full(1000);
-
     }
 
-    full(count = 50) {
-        this.users = new Array<any>();
-        for (let i = 0; i < count; i++) {
-            this.users.push({
-                id: i,
-                login: 'login ' + i,
-                fam: 'surname ' + i,
-                fun: {delete: false, edit: true, view: true}
-            });
-        }
-    }
+
 }

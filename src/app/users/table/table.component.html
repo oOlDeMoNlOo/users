@@ -30,7 +30,7 @@
                 matTooltip="Просмотр информации о пользователе">
           <mat-icon aria-label="view">assignment_ind</mat-icon>
         </button>
-        <button *ngIf="element.fun.delete" mat-icon-button color="primary" matTooltip="Удалить пользователя">
+        <button *ngIf="element.fun.delete" (click)="service.deleteUser(element.id - 1)" mat-icon-button color="primary" matTooltip="Удалить пользователя">
           <mat-icon aria-label="delete">delete</mat-icon>
         </button>
       </mat-cell>
