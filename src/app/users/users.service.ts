@@ -1,49 +1,45 @@
 ///<reference path="../../../node_modules/@angular/material/table/typings/table-data-source.d.ts"/>
-import {Injectable, OnInit} from '@angular/core';
-import {User} from '../common/user';
-import {MatPaginator, MatSort, MatTableDataSource, Sort} from '@angular/material';
-import {Subject} from 'rxjs/Subject';
-import {Observable} from 'rxjs/Observable';
+import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {Subject} from 'rxjs/Subject';
+import {User} from '../common/user';
 
 @Injectable()
-export class UsersService implements OnInit {
+export class UsersService {
 
-    users: any;
-
+    users: Array<User>;
+    usersSubject: Subject<any>;
 
     constructor(private http: HttpClient) {
         this.users = [];
-        this.full(500 );
-    }
-
-    ngOnInit() {
+        this.usersSubject = new Subject();
+        this.full(50);
     }
 
     full(count = 50) {
         let i = 0;
-        let us = new Array<any>();
-
+        let us = new Array<any>()
         this.http.get(`https://randomuser.me/api?results=${count}`).subscribe((result) => {
-            console.log(result['results'][0]);
-            console.log(new Date(result['results'][0]['registered']).getTime())
-            console.log(
-                Math.round(new Date(result['results'][0]['registered']).getTime() / 1000) % 2,
-                Math.round(new Date(result['results'][0]['registered']).getTime() / 3000) % 2,
-                Math.round(new Date(result['results'][0]['registered']).getTime() / 5000) % 2
-            );
+            console.log(result['results'][0])
             for (const a  of result['results']) {
                 i++;
                 us.push({
                     id: i,
                     login: a['login']['username'],
-                    fam: this.f(a['name']['last']) + ' ' + this.f(a['name']['first']),
+                    name: this.firstUpper(a['name']['last']),
+                    surname: this.firstUpper(a['name']['first']),
+                    patronymic: this.firstUpper(a['name']['title']),
+                    gender: a['gender'] !== 'female',
+                    birthday: a['dob'],
+                    telephone: a['cell'],
+                    email: a['email'],
+                    group: a['login']['salt'],
                     fun: {
                         delete: Math.round(new Date(a['registered']).getTime() / 1000) % 2,
                         edit: Math.round(new Date(a['registered']).getTime() / 3000) % 2,
                         view: Math.round(new Date(a['registered']).getTime() / 5000) % 2
                     }
-                });
+                } as User);
             }
             this.users = us;
             us = null;
@@ -54,19 +50,24 @@ export class UsersService implements OnInit {
         this.users.push({
             id: this.users.length,
             login: user.login,
-            fam: user.surname,
+            surname: user.surname,
             fun: {delete: true, edit: true, view: true}
         });
+        this.usersSubject.next(this.users);
     }
 
     deleteUser(id: number) {
-        const a = this.users;
-        a.splice(id, 1);
-        this.users = a;
+        this.users.splice(this.find(id), 1);
+        this.usersSubject.next(this.users);
     }
-    f(str: string) {
+
+    firstUpper(str: string) {
         str.slice(0, 1);
         str = str[0].toUpperCase() + str;
         return str;
+    }
+
+    find(id: number) {
+        return this.users.findIndex((value, index) => value.id === id + 1);
     }
 }

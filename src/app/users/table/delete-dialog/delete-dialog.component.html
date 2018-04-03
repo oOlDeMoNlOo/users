@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Удалить?</h1>
+<div mat-dialog-content>
+  <p>Вы действительно желаете удалить пользователя <span class="font-weight-bold">{{data.fullname}}</span> с логином <span class="font-weight-bold">{{data.login}}</span>?</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="{status: false , id: data.id}">Нет</button>
+  <button mat-button [mat-dialog-close]="{status: true , id: data.id}" cdkFocusInitial>Да</button>
+</div>

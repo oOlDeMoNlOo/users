@@ -1,24 +1,30 @@
 <mat-card class="container">
     <mat-card-title>Регистрация нового пользователя</mat-card-title>
     <form class="row" [formGroup]="form" (ngSubmit)="onSubmit()">
-        <div class="col">
+        <div class="col-6">
             <mat-form-field class="w-100">
                 <input matInput id="login" placeholder="Логин" formControlName="login">
             </mat-form-field>
             <mat-form-field class="w-100">
-                <input matInput id="password" placeholder="Пароль" formControlName="password" [type]="hide ? 'password' : 'text'">
-                <mat-icon class="hide_icon" matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+                <input matInput id="password" placeholder="Пароль" formControlName="password"
+                       [type]="hide ? 'password' : 'text'">
+                <mat-icon class="hide_icon" matSuffix (click)="hide = !hide">{{hide ? 'visibility' :
+                    'visibility_off'}}
+                </mat-icon>
             </mat-form-field>
             <mat-form-field class="w-100">
                 <input matInput id="group" placeholder="Группа привилегий" formControlName="group">
             </mat-form-field>
             <mat-form-field class="w-100">
-                <input matInput [matDatepicker]="picker" placeholder="Дата рождения">
+                <input matInput id="email" placeholder="Электронная почта" formControlName="email">
+            </mat-form-field>
+            <mat-form-field class="w-100">
+                <input matInput [matDatepicker]="picker" placeholder="Дата рождения [1970/12/31]">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
         </div>
-        <div class="col">
+        <div class="col-6">
             <mat-form-field class="w-100">
                 <input matInput id="name" placeholder="Имя" formControlName="name">
             </mat-form-field>
@@ -27,6 +33,9 @@
             </mat-form-field>
             <mat-form-field class="w-100">
                 <input matInput id="patronymic" placeholder="Отчество" formControlName="patronymic">
+            </mat-form-field>
+            <mat-form-field class="w-100">
+                <input matInput id="phonenumber" type="tel" placeholder="Номер телефона" formControlName="phonenumber">
             </mat-form-field>
             <div class="sex">
                 <label for="sex">Пол: </label>
@@ -40,9 +49,12 @@
                 </mat-radio-group>
             </div>
         </div>
-        <div class="col-12 d-flex flex-row justify-content-end">
-            <button mat-raised-button color="primary" type="submit" >Зарегистрировать</button>
-        </div>
+            <div class="col-6">
+                <button mat-button color="warn" (click)="backClicked()">Назад</button>
+            </div>
+            <div class="col-6 d-flex flex-row justify-content-end">
+                <button mat-raised-button color="primary" type="submit">Зарегистрировать</button>
+            </div>
     </form>
 
 </mat-card>

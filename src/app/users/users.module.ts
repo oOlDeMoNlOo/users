@@ -3,7 +3,9 @@ import {CommonModule} from '@angular/common';
 import {UsersComponent} from './users/users.component';
 import {RoutingUsersModule} from './routing-users.module';
 import {
-    MatButtonModule, MatCardModule, MatDatepickerModule, MatFormFieldModule, MatIconModule, MatInputModule,
+    MatButtonModule, MatCardModule, MatDatepickerModule, MatDialogModule, MatDividerModule, MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
     MatNativeDateModule, MatRadioModule,
     MatSortModule,
     MatTooltipModule
@@ -13,8 +15,9 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {TableComponent} from './table/table.component';
 import {AddUserComponent} from './add-user/add-user.component';
 import {ReactiveFormsModule} from '@angular/forms';
-import {FullInfoComponent} from './full-info/full-info.component';
 import {HttpClientModule} from '@angular/common/http';
+import {DeleteDialogComponent} from './table/delete-dialog/delete-dialog.component';
+import {ViewUserComponent} from './view-user/view-user.component';
 
 @NgModule({
     imports: [
@@ -33,9 +36,12 @@ import {HttpClientModule} from '@angular/common/http';
         MatDatepickerModule,
         MatNativeDateModule,
         MatRadioModule,
-        HttpClientModule
+        HttpClientModule,
+        MatDialogModule,
+        MatDividerModule
     ],
-    declarations: [UsersComponent, TableComponent, AddUserComponent, FullInfoComponent]
+    declarations: [UsersComponent, TableComponent, AddUserComponent, DeleteDialogComponent, ViewUserComponent],
+    entryComponents: [DeleteDialogComponent]
 })
 export class UsersModule {
 }

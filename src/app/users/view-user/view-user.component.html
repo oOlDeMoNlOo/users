@@ -1,0 +1,59 @@
+<mat-card>
+    <mat-card-title>
+        <button mat-icon-button color="warn" (click)="location.back()">
+            <mat-icon aria-label="Назад">arrow_back</mat-icon>
+        </button>
+        Информация о пользователе <span class="font-weight-bold">{{user.login}}</span>
+        <button *ngIf="user.fun.edit" mat-icon-button color="primary"
+                matTooltip="Редактировать пользователя">
+            <mat-icon aria-label="edit">edit</mat-icon>
+        </button>
+        <button *ngIf="user.fun.delete"
+                (click)="openDialog(user.id, user.name + ' ' + user.surname + ' ' + user.patronymic, user.login)"
+                mat-icon-button color="primary" matTooltip="Удалить пользователя">
+            <mat-icon aria-label="delete">delete</mat-icon>
+        </button>
+    </mat-card-title>
+    <mat-card-content class="pt-4">
+        <div *ngIf="!user">Такого пользователя не существует</div>
+        <div class="row" *ngIf="user">
+            <table class="table table-hover table-striped table-bordered">
+                <tbody>
+                    <tr>
+                        <th>Имя:</th>
+                        <td>{{user.name}}</td>
+
+                    </tr>
+                    <tr>
+                        <th>Фамилия:</th>
+                        <td>{{user.surname}}</td>
+                    </tr>
+                    <tr>
+                        <th>Отчество:</th>
+                        <td>{{user.patronymic}}</td>
+                    </tr>
+                    <tr>
+                        <th>Пол:</th>
+                        <td>{{user.gender? "Мужской": "Женский"}}</td>
+                    </tr>
+                    <tr>
+                        <th>День рождения:</th>
+                        <td>{{user.birthday | date:'dd.MM.yyyy'}}</td>
+                    </tr>
+                    <tr>
+                        <th>Номер телефона:</th>
+                        <td>{{user.telephone}}</td>
+                    </tr>
+                    <tr>
+                        <th>Электронная почта:</th>
+                        <td>{{user.email}}</td>
+                    </tr>
+                    <tr>
+                        <th>Группа привелегий</th>
+                        <td>{{user.group}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </mat-card-content>
+</mat-card>
