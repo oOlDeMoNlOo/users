@@ -1,0 +1,19 @@
+<div class="container-fluid">
+    <div class="row " (click)="focus();" *ngIf="!active">
+        <div class="text col">{{value}}</div>
+        <div class="h-100 icons d-flex flex-row justify-content-center">
+            <mat-icon matSuffix (click)="focus()">border_color</mat-icon>
+        </div>
+    </div>
+    <div class="row" *ngIf="active" >
+        <div class="col forinput">
+            <input appFocus class="h-100 w-100" type="text" [value]="value" #val
+                   (keydown.enter)="accept(val.value)"  (keydown.escape)="cancel()">
+        </div>
+        <div class="h-100 icons2 d-flex flex-row justify-content-center bg-white">
+            <mat-icon color="primary" class="darken" matSuffix (click)="accept(val.value)">done</mat-icon>
+            <mat-icon color="warn" class="darken" matSuffix (click)="cancel()">close</mat-icon>
+        </div>
+    </div>
+</div>
+

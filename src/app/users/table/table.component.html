@@ -24,6 +24,7 @@
             <mat-header-cell *matHeaderCellDef>Функции</mat-header-cell>
             <mat-cell *matCellDef="let element">
                 <button *ngIf="element.fun.edit" mat-icon-button color="primary"
+                        [routerLink]="['edit', element.id]"
                         matTooltip="Редактировать пользователя">
                     <mat-icon aria-label="edit">edit</mat-icon>
                 </button>

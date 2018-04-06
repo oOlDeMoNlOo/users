@@ -70,4 +70,9 @@ export class UsersService {
     find(id: number) {
         return this.users.findIndex((value, index) => value.id === id + 1);
     }
+
+    editUser(id: number, param: string, value: any) {
+        this.users[this.find(id) - 1][param] = value;
+        this.usersSubject.next(this.users);
+    }
 }

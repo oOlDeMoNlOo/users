@@ -1,0 +1,23 @@
+<div class="container-fluid">
+    <div class="row " (click)="focus();" *ngIf="!active">
+        <div class="text col">{{value? "Мужчина" : "Женщина"}}</div>
+        <div class="h-100 icons d-flex flex-row justify-content-center">
+            <mat-icon matSuffix (click)="focus()">border_color</mat-icon>
+        </div>
+    </div>
+    <div class="row" *ngIf="active" >
+        <div class="col forinput bg-white">
+            <mat-radio-group [(ngModel)]="val" class="d-flex flex-row justify-content-center h-100">
+                <mat-radio-button class="d-flex flex-row justify-content-center"
+                                  color="primary" [value]="true">Мужчина</mat-radio-button>
+                <mat-radio-button class="d-flex flex-row justify-content-center ml-3"
+                                  [value]="false">Женщина</mat-radio-button>
+            </mat-radio-group>
+        </div>
+        <div class="h-100 icons2 d-flex flex-row justify-content-center bg-white">
+            <mat-icon color="primary" class="darken" matSuffix (click)="accept()">done</mat-icon>
+            <mat-icon color="warn" class="darken"  matSuffix (click)="cancel()">close</mat-icon>
+        </div>
+    </div>
+</div>
+

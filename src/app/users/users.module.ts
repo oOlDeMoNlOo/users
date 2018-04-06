@@ -14,10 +14,17 @@ import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {TableComponent} from './table/table.component';
 import {AddUserComponent} from './add-user/add-user.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {DeleteDialogComponent} from './table/delete-dialog/delete-dialog.component';
 import {ViewUserComponent} from './view-user/view-user.component';
+import {EditUserComponent} from './edit-user/edit-user.component';
+import {
+    FocusDirective,
+    LabelEditableTextComponent
+} from './edit-user/label-editable-text/label-editable.component';
+import {LabelEditableDateComponent} from './edit-user/label-editable-date/label-editable.component';
+import {LabelEditableGenderComponent} from './edit-user/label-editable-gender/label-editable.component';
 
 @NgModule({
     imports: [
@@ -38,9 +45,11 @@ import {ViewUserComponent} from './view-user/view-user.component';
         MatRadioModule,
         HttpClientModule,
         MatDialogModule,
-        MatDividerModule
+        MatDividerModule,
+        FormsModule
     ],
-    declarations: [UsersComponent, TableComponent, AddUserComponent, DeleteDialogComponent, ViewUserComponent],
+    declarations: [UsersComponent, TableComponent, AddUserComponent, DeleteDialogComponent, ViewUserComponent, EditUserComponent,
+    LabelEditableTextComponent, FocusDirective, LabelEditableDateComponent, LabelEditableGenderComponent],
     entryComponents: [DeleteDialogComponent]
 })
 export class UsersModule {

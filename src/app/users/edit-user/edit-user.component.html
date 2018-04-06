@@ -1,0 +1,68 @@
+<mat-card>
+  <mat-card-title>
+    <button mat-icon-button color="warn" (click)="location.back()">
+      <mat-icon aria-label="Назад">arrow_back</mat-icon>
+    </button>
+    Информация о пользователе <span class="font-weight-bold">{{user.login}}</span>
+    <button *ngIf="user.fun.view" routerLink="/users/view/{{user.id}}" mat-icon-button color="primary"
+            matTooltip="Просмотр информации о пользователе">
+      <mat-icon aria-label="view">assignment_ind</mat-icon>
+    </button>
+    <button *ngIf="user.fun.delete"
+            (click)="openDialog(user.id, user.name + ' ' + user.surname + ' ' + user.patronymic, user.login)"
+            mat-icon-button color="primary" matTooltip="Удалить пользователя">
+      <mat-icon aria-label="delete">delete</mat-icon>
+    </button>
+  </mat-card-title>
+  <mat-card-content class="pt-4">
+    <div *ngIf="!user">Такого пользователя не существует</div>
+    <div class="row" *ngIf="user">
+      <table class="table table-hover table-striped table-bordered">
+        <tbody>
+        <tr>
+          <th>Имя:</th>
+          <td class="p-0"><app-label-text-editable [value]="user.name" (changeValue)="edit('name', $event)">
+          </app-label-text-editable>
+          </td>
+
+        </tr>
+        <tr>
+          <th>Фамилия:</th>
+          <td class="p-0"><app-label-text-editable [value]="user.surname" (changeValue)="edit('surname', $event)">
+          </app-label-text-editable>
+        </tr>
+        <tr>
+          <th>Отчество:</th>
+          <td class="p-0"><app-label-text-editable [value]="user.patronymic" (changeValue)="edit('patronymic', $event)">
+          </app-label-text-editable>
+        </tr>
+        <tr>
+          <th>Пол:</th>
+          <td class="p-0"><app-label-gender-editable [value]="user.gender" (changeValue)="edit('gender', $event)">
+          </app-label-gender-editable></td>
+        </tr>
+        <tr>
+          <th>День рождения:</th>
+          <td class="p-0"><app-label-date-editable [value]="user.birthday" (changeValue)="edit('birthday', $event)">
+          </app-label-date-editable></td>
+        </tr>
+        <tr>
+          <th>Номер телефона:</th>
+          <td class="p-0"><app-label-text-editable [value]="user.telephone" (changeValue)="edit('telephone', $event)">
+          </app-label-text-editable>
+        </tr>
+        <tr>
+          <th>Электронная почта:</th>
+          <td class="p-0"><app-label-text-editable [value]="user.email" (changeValue)="edit('email', $event)">
+          </app-label-text-editable>
+        </tr>
+        <tr>
+          <th>Группа привелегий</th>
+          <td class="p-0"><app-label-text-editable [value]="user.group" (changeValue)="edit('group', $event)">
+          </app-label-text-editable>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </mat-card-content>
+</mat-card>

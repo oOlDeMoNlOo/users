@@ -5,6 +5,7 @@
         </button>
         Информация о пользователе <span class="font-weight-bold">{{user.login}}</span>
         <button *ngIf="user.fun.edit" mat-icon-button color="primary"
+                routerLink="/users/edit/{{id}}"
                 matTooltip="Редактировать пользователя">
             <mat-icon aria-label="edit">edit</mat-icon>
         </button>
